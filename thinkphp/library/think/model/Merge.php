@@ -211,7 +211,15 @@ class Merge extends Model
                     unset($data[$pk]);
                 }
                 // 写入主表数据
-                $result = $db->strict(false)->where($where)->update($data);
+                $result = $db->strict(false)->where(function($query) use ($where) {
+                    foreach ($where as $key => $val) {
+                        if (is_array($val) && isset($val[0]) && in_array(strtolower($val[0]), ['in', 'not in'])) {
+                            $query->where($key, $val[0], array_values($val[1]));
+                        } else {
+                            $query->where($key, '=', $val);
+                        }
+                    }
+                })->update($data);
 
                 // 写入附表数据
                 foreach ($this->relationModel as $key => $model) {
