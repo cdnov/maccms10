@@ -76,7 +76,6 @@ class Aliyun {
         ));
 
         if(substr($url, 0,5) == 'https') {
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
         }
 
