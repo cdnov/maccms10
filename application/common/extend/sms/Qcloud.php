@@ -155,11 +155,11 @@ class Qcloud {
         curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 60);
         curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($dataObj));
         curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
 
         $ret = curl_exec($curl);
         if (false == $ret) {
             // curl_exec failed
+
             $result = "{ \"result\":" . -2 . ",\"errmsg\":\"" . curl_error($curl) . "\"}";
         } else {
             $rsp = curl_getinfo($curl, CURLINFO_HTTP_CODE);

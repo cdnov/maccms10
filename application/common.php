@@ -626,7 +626,6 @@ function mac_curl_get($url,$heads=array(),$cookie='')
     curl_setopt($ch, CURLOPT_HEADER,0);
     curl_setopt($ch, CURLOPT_REFERER, $url);
     curl_setopt($ch, CURLOPT_POST, 0);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 1);
     if(!empty($cookie)){
         curl_setopt($ch, CURLOPT_COOKIE, $cookie);
